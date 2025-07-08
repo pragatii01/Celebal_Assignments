@@ -12,7 +12,7 @@ Each folder contains the weekly assignment tasks submitted using **Jupyter Noteb
 | Week | Assignment | Format |  
 |------|------------|--------|  
 | ✅ Week 1 | [Assignment_Week1.ipynb](https://github.com/pragatii01/Celebal_Assignments/blob/main/Week1/Assignment_Week1.ipynb) |   
-| ✅ Week 2 | [Assignment_Week2.ipynb](./Week2/Assignment_Week2.ipynb) | 
+| ✅ Week 2 | [Assignment_Week2.ipynb](https://github.com/pragatii01/Celebal_Assignments/blob/main/Week2/Assignment_Week2.ipynb) | 
 | ✅ Week 3 | [Assignment_Week3.ipynb](./Week3/Assignment_Week3.ipynb) |   
 | ✅ Week 4 | [Assignment_Week4.docx](./Week4/Assignment_Week4.docx)   |  
 | ✅ Week 5 | [Assignment_Week5.ipynb](./Week5/Assignment_Week5.ipynb) |  
