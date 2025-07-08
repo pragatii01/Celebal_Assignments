@@ -1,5 +1,3 @@
-# Celebal_Assignments
-
 # 🌟 Celebal Internship Assignments
 
 Welcome to my repository for the **Celebal Summer Internship Program**!  
@@ -13,11 +11,11 @@ Each folder contains the weekly assignment tasks submitted using **Jupyter Noteb
 |------|------------|--------|  
 | ✅ Week 1 | [Assignment_Week1.ipynb](https://github.com/pragatii01/Celebal_Assignments/blob/main/Week1/Assignment_Week1.ipynb) |   
 | ✅ Week 2 | [Assignment_Week2.ipynb](https://github.com/pragatii01/Celebal_Assignments/blob/main/Week2/Assignment_Week2.ipynb) | 
-| ✅ Week 3 | [Assignment_Week3.ipynb](./Week3/Assignment_Week3.ipynb) |   
-| ✅ Week 4 | [Assignment_Week4.docx](./Week4/Assignment_Week4.docx)   |  
-| ✅ Week 5 | [Assignment_Week5.ipynb](./Week5/Assignment_Week5.ipynb) |  
-| ✅ Week 6 | [Assignment_Week6.ipynb](./Week6/Assignment_Week6.ipynb) |   
-| ✅ Week 7 | [Assignment_Week7.ipynb](./Week7/Assignment_Week7.ipynb) | 
+| ✅ Week 3 | [Assignment_Week3.ipynb](https://github.com/pragatii01/Celebal_Assignments/tree/main/Week3) |   
+| ✅ Week 4 | [Assignment_Week4.docx]()   |  
+| ✅ Week 5 | [Assignment_Week5.ipynb](https://github.com/pragatii01/Celebal_Assignments/tree/main/Week5) |  
+| ✅ Week 6 | [Assignment_Week6.ipynb](https://github.com/pragatii01/Celebal_Assignments/tree/main/Week6) |   
+| ✅ Week 7 | [Assignment_Week7.ipynb](https://github.com/pragatii01/Celebal_Assignments/tree/main/Week7) | 
 
 ---
 
