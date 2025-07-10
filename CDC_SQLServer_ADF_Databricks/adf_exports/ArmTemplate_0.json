@@ -1,0 +1,140 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory name",
+            "defaultValue": "MyCdcDataFactory"
+        },
+        "MyDatabricksLinkedServices_accessToken": {
+            "type": "secureString",
+            "metadata": "Secure string for 'accessToken' of 'MyDatabricksLinkedServices'"
+        },
+        "MyCDCSQLServer_password": {
+            "type": "secureString",
+            "metadata": "Secure string for 'password' of 'MyCDCSQLServer'"
+        },
+        "MyCDCSQLServer_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "Acer"
+        },
+        "MyCDCSQLServer_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "MyCDCDatabase"
+        },
+        "MyCDCSQLServer_properties_typeProperties_userName": {
+            "type": "string",
+            "defaultValue": "cdcuser"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "[concat(parameters('factoryName'), '/selfhosted')]",
+            "type": "Microsoft.DataFactory/factories/integrationRuntimes",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "type": "SelfHosted",
+                "typeProperties": {
+                    "selfContainedInteractiveAuthoringEnabled": true
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/MyDatabricksLinkedServices')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureDatabricks",
+                "typeProperties": {
+                    "domain": "https://adb-3318779544129619.19.azuredatabricks.net",
+                    "accessToken": {
+                        "type": "SecureString",
+                        "value": "[parameters('MyDatabricksLinkedServices_accessToken')]"
+                    },
+                    "newClusterNodeType": "Standard_DS3_v2",
+                    "newClusterNumOfWorker": "1",
+                    "newClusterSparkEnvVars": {
+                        "PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+                    },
+                    "newClusterVersion": "14.3.x-scala2.12",
+                    "clusterOption": "Fixed",
+                    "newClusterInitScripts": []
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/MyCDCSQLServer')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "SqlServer",
+                "typeProperties": {
+                    "server": "[parameters('MyCDCSQLServer_properties_typeProperties_server')]",
+                    "database": "[parameters('MyCDCSQLServer_properties_typeProperties_database')]",
+                    "encrypt": "optional",
+                    "trustServerCertificate": true,
+                    "authenticationType": "SQL",
+                    "userName": "[parameters('MyCDCSQLServer_properties_typeProperties_userName')]",
+                    "password": {
+                        "type": "SecureString",
+                        "value": "[parameters('MyCDCSQLServer_password')]"
+                    },
+                    "alwaysEncryptedSettings": {
+                        "alwaysEncryptedAkvAuthType": "ManagedIdentity"
+                    }
+                },
+                "connectVia": {
+                    "referenceName": "selfhosted",
+                    "type": "IntegrationRuntimeReference"
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/integrationRuntimes/selfhosted')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/run_cdc_notebook_pipeline')]",
+            "type": "Microsoft.DataFactory/factories/pipelines",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "activities": [
+                    {
+                        "name": "RunCDCNotebook",
+                        "type": "DatabricksNotebook",
+                        "dependsOn": [],
+                        "policy": {
+                            "timeout": "0.12:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "userProperties": [],
+                        "typeProperties": {
+                            "notebookPath": "/Workspace/Users/rathorepragati174@outlook.com/CDC_SQL_to_Delta"
+                        },
+                        "linkedServiceName": {
+                            "referenceName": "MyDatabricksLinkedServices",
+                            "type": "LinkedServiceReference"
+                        }
+                    }
+                ],
+                "policy": {
+                    "elapsedTimeMetric": {}
+                },
+                "annotations": []
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/MyDatabricksLinkedServices')]"
+            ]
+        }
+    ]
+}
