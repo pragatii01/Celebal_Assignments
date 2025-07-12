@@ -3,8 +3,8 @@
 jdbcHostname = "10.11.134.184"  # ✅ Your actual IP
 jdbcPort = 1433
 jdbcDatabase = "MyCDCDatabase"
-jdbcUsername = "cdcuser"
-jdbcPassword = "Cdc@12345"
+jdbcUsername = "user"
+jdbcPassword = "00000000"
 
 # JDBC URL
 jdbcUrl = f"jdbc:sqlserver://{jdbcHostname}:{jdbcPort};databaseName={jdbcDatabase};encrypt=false;trustServerCertificate=true"
@@ -22,8 +22,8 @@ connectionProperties = {
 jdbcHostname = "0.tcp.in.ngrok.io"
 jdbcPort = 15962
 jdbcDatabase = "MyCDCDatabase"
-jdbcUsername = "cdcuser"
-jdbcPassword = "Cdc@12345"
+jdbcUsername = "user"
+jdbcPassword = "000000"
 
 jdbcUrl = f"jdbc:sqlserver://{jdbcHostname}:{jdbcPort};databaseName={jdbcDatabase};encrypt=false;trustServerCertificate=true"
 
